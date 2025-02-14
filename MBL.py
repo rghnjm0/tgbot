@@ -1,7 +1,7 @@
 import telebot
 from telebot import types
 
-bot = telebot.TeleBot('Token')
+bot = telebot.TeleBot('7888824558:AAEgA4rSbMuuAoX3LJO1I8f-WqNN9cs8EFc')
 
 def main_menu():
     markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
@@ -14,7 +14,15 @@ def main_menu():
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    bot.reply_to(message, "Добро пожаловать в бот Mobile Legends! Mobile Legends: Bang Bang — это популярная многопользовательская игра в жанре MOBA (мобильная онлайн-битва на арене), разработанная компанией Moonton. В игре два команды по пять игроков сражаются друг с другом, чтобы уничтожить базу противника, при этом зарабатывая золото и опыт, прокачивая героев и развивая стратегию команды. Игроки выбирают из разнообразных героев с уникальными способностями, каждый из которых занимает определённую роль на поле боя. Выберите опцию ниже.", reply_markup=main_menu())
+     with open("piki/mlbb1.jpg", "rb") as photo:
+        bot.send_photo(message.chat.id, photo)
+        welcome_text = (
+        "Добро пожаловать в бот Mobile Legends! Mobile Legends: Bang Bang — это популярная многопользовательская игра в жанре MOBA "
+        "(мобильная онлайн-битва на арене), разработанная компанией Moonton. В игре две команды по пять игроков сражаются друг с другом, "
+        "чтобы уничтожить базу противника, при этом зарабатывая золото и опыт, прокачивая героев и развивая стратегию команды. "
+        "Игроки выбирают из разнообразных героев с уникальными способностями, каждый из которых занимает определённую роль на поле боя. "
+        "Выберите опцию ниже.")
+        bot.send_message(message.chat.id, welcome_text, reply_markup=main_menu())
 
 @bot.message_handler(func=lambda message: message.text == "Герои")
 def handle_heroes(message):
@@ -27,6 +35,16 @@ def handle_heroes(message):
     button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_main')
     otvet.add(button1, button2, button3, button4, button5, button_back)
     bot.send_message(message.chat.id, "Выберите категорию:", reply_markup=otvet)
+
+@bot.message_handler(func=lambda message: message.text == "Советы")
+def handle_sovet(message):
+    markup99 = types.InlineKeyboardMarkup(row_width=2)
+    button1 = types.InlineKeyboardButton("Основы игры", callback_data='hero_osn')
+    button2 = types.InlineKeyboardButton("Советы для разных ролей", callback_data='hero_roli')
+    button3 = types.InlineKeyboardButton("Советы по стратегии", callback_data='hero_strateg')
+    button4 = types.InlineKeyboardButton("Советы по контрпикам", callback_data='hero_novich')
+    markup99.add(button1, button2, button3, button4)
+    bot.send_message(message.chat.id, "Выберите категорию:", reply_markup=markup99)
 
 @bot.message_handler(func=lambda message: message.text == "Снаряжение")
 def handle_equipment(message):
@@ -261,7 +279,7 @@ def callback_query_photos(call):
         button_back21 = types.InlineKeyboardButton("Назад", callback_data='back_to_equipment')
         markup006.add(button1, button2, button3, button4, button_back21)
         bot.send_message(call.message.chat.id, "Выберите снаряжение:", reply_markup=markup006)
-
+    
     elif call.data == "hero_assassin":
         markup5 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Хаябуса", callback_data='hero_hayabusa')
@@ -272,7 +290,7 @@ def callback_query_photos(call):
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup5.add(button1, button2, button3, button4, button5, button_back)
         bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
-                             text="Вы выбрали топ 5 Убийц:", reply_markup=markup5)
+                             text="Вы выбрали топ 5 убийц и сборки на них:", reply_markup=markup5)
     elif call.data == "hero_hayabusa":
         media = [types.InputMediaPhoto(open('piki/Xay1.jpg', 'rb'), caption="Фото 1"),
                  types.InputMediaPhoto(open('piki/Xay2.jpg', 'rb'), caption="Фото 2"),
@@ -378,7 +396,7 @@ def callback_query_photos(call):
         markup11.add(button1, button2, button3, button4, button5, button_back)
         bot.edit_message_text(chat_id=call.message.chat.id,
                              message_id=call.message.message_id,
-                             text="Вы выбрали топ 5 Стрелков:",
+                             text="Вы выбрали топ 5 стрелков и сборки на них:",
                              reply_markup=markup11)
     elif call.data == "hero_greyndger":
         media = [types.InputMediaPhoto(open('piki/gren1.jpg', 'rb'), caption="Фото 1"),
@@ -488,7 +506,7 @@ def callback_query_photos(call):
         markup17.add(button1, button2, button3, button4, button5, button_back)
         bot.edit_message_text(chat_id=call.message.chat.id,
                              message_id=call.message.message_id,
-                             text="Вы выбрали топ 5 магов:",
+                             text="Вы выбрали топ 5 магов и сборки на них:",
                              reply_markup=markup17)
     elif call.data == "hero_dchysin":
         media = [types.InputMediaPhoto(open('piki/dchys1.jpg', 'rb'), caption="Фото 1"),
@@ -598,7 +616,7 @@ def callback_query_photos(call):
         markup23.add(button1, button2, button3, button4, button5, button_back)
         bot.edit_message_text(chat_id=call.message.chat.id,
                              message_id=call.message.message_id,
-                             text="Вы выбрали топ 5 роум:",
+                             text="Вы выбрали топ 5 танков и сборки на них:",
                              reply_markup=markup23)
     elif call.data == "hero_gatot":
         media = [types.InputMediaPhoto(open('piki/gat1.jpg', 'rb'), caption="Фото 1"),
@@ -613,7 +631,7 @@ def callback_query_photos(call):
         button5 = types.InlineKeyboardButton("Чу", callback_data='hero_chy')
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup24.add(button1, button2, button3, button4, button5, button_back)
-        bot.send_message(call.message.chat.id, "Выберите роумера:", reply_markup=markup24)
+        bot.send_message(call.message.chat.id, "Выберите танка:", reply_markup=markup24)
     elif call.data == "hero_chip":
         media = [types.InputMediaPhoto(open('piki/chip1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/chip2.jpg', 'rb'), caption="Фото 2"),
@@ -627,7 +645,7 @@ def callback_query_photos(call):
         button5 = types.InlineKeyboardButton("Чу", callback_data='hero_chy')
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup25.add(button1, button2, button3, button4, button5, button_back)
-        bot.send_message(call.message.chat.id, "Выберите роумера:", reply_markup=markup25)
+        bot.send_message(call.message.chat.id, "Выберите танка:", reply_markup=markup25)
 
     elif call.data == "hero_xilos":
         media = [types.InputMediaPhoto(open('piki/xilo1.jpg', 'rb'), caption="Фото 1"),
@@ -642,7 +660,7 @@ def callback_query_photos(call):
         button5 = types.InlineKeyboardButton("Чу", callback_data='hero_chy')
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup26.add(button1, button2, button3, button4, button5, button_back)
-        bot.send_message(call.message.chat.id, "Выберите роумера:", reply_markup=markup26)
+        bot.send_message(call.message.chat.id, "Выберите танка:", reply_markup=markup26)
 
     elif call.data == "hero_xilda":
         media = [types.InputMediaPhoto(open('piki/xilda1.jpg', 'rb'), caption="Фото 1"),
@@ -657,7 +675,7 @@ def callback_query_photos(call):
         button5 = types.InlineKeyboardButton("Чу", callback_data='hero_chy')
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup27.add(button1, button2, button3, button4, button5, button_back)
-        bot.send_message(call.message.chat.id, "Выберите роумера:", reply_markup=markup27)
+        bot.send_message(call.message.chat.id, "Выберите танка:", reply_markup=markup27)
 
     elif call.data == "hero_chy":
         media = [types.InputMediaPhoto(open('piki/chu1.jpg', 'rb'), caption="Фото 1"),
@@ -672,7 +690,7 @@ def callback_query_photos(call):
         button5 = types.InlineKeyboardButton("Чу", callback_data='hero_chy')
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup28.add(button1, button2, button3, button4, button5, button_back)
-        bot.send_message(call.message.chat.id, "Выберите роумера:", reply_markup=markup28)
+        bot.send_message(call.message.chat.id, "Выберите танка:", reply_markup=markup28)
 
     elif call.data == "back_to_heroes":
         markup = types.InlineKeyboardMarkup(row_width=2)
@@ -707,7 +725,7 @@ def callback_query_photos(call):
         markup.add(button1, button2, button3, button4, button5, button_back)
         bot.edit_message_text(chat_id=call.message.chat.id,
                              message_id=call.message.message_id,
-                             text="Вы выбрали топ 5 бойцов:",
+                             text="Вы выбрали топ 5 бойцов и сборки на них:",
                              reply_markup=markup)
     elif call.data == "hero_badang":
         media = [types.InputMediaPhoto(open('piki/badg1.jpg', 'rb'), caption="Фото 1"),
@@ -795,18 +813,140 @@ def callback_query_photos(call):
     elif call.data == "back_to_main":
         bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
                              text="Возвращаемся в главное меню.", reply_markup=None)
+    elif call.data == "hero_osn":
+        markupv = types.InlineKeyboardMarkup(row_width=2)
+        button1 = types.InlineKeyboardButton(text="Выбор героя", callback_data='zxc')
+        button2 = types.InlineKeyboardButton(text="Основы карты", callback_data='zxcv')
+        button3 = types.InlineKeyboardButton(text="Фарм и золото", callback_data='zxcvb')
+        button4 = types.InlineKeyboardButton(text="Командная работа", callback_data='zxcvbn')
+        button_back2 = types.InlineKeyboardButton(text="Назад", callback_data='back_to_sovet')
+        markupv.add(button1, button2, button3, button4, button_back2)
+        bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
+                              text="Выберите категорию:", reply_markup=markupv)
+    elif call.data == "zxc":
+        bot.answer_callback_query(call.id, "Вы выбрали первый пункт.")
+        bot.send_message(call.message.chat.id,
+        "\n1. Изучите роли: Каждый герой относится к определённому классу (танк, боец, маг, стрелок, ассасин, поддержка). Начните с героя, который соответствует вашему стилю игры.\n2. ""Лес: Между линиями находится лес, где можно убивать нейтральных монстров для получения золота и опыта.\n3. "
+        "Синергия с командой: Выбирайте героя, который дополняет команду. Например, если в команде нет танка, возьмите героя с высокой живучестью.")
+    elif call.data == "zxcv":
+        bot.answer_callback_query(call.id, "Вы выбрали второй пункт.")
+        bot.send_message(call.message.chat.id,
+        "\n1. Линии: На карте три линии — верхняя, средняя и нижняя. Каждая линия ведёт к базам команд.\n2. ""Цели: Убивайте лордов, черепах и других нейтральных монстров, чтобы получить преимущество для команды.\n3. "
+        "Башни: Башни защищают вашу базу. Уничтожайте вражеские башни, чтобы продвинуться к вражеской базе. ")
+    elif call.data == "zxcvb":
+        bot.answer_callback_query(call.id, "Вы выбрали третий пункт.")
+        bot.send_message(call.message.chat.id,  
+        "\n1. Убивайте миньонов: Миньоны — основной источник золота и опыта. Старайтесь не пропускать их.\n2. ""Лес: Между линиями находится лес, где можно убивать нейтральных монстров для получения золота и опыта.\n3. "
+        "Не умирайте: Смерть лишает вас золота и опыта, а также даёт преимущество врагу.")
+    elif call.data == "zxcvbn":
+        bot.answer_callback_query(call.id, "Вы выбрали четвертый пункт.")
+        bot.send_message(call.message.chat.id,
+        "\n1. Общайтесь: Используйте чат и быстрые сообщения, чтобы координировать действия с командой.\n2. ""Помогайте союзникам: Если видите, что союзник в беде, постарайтесь помочь ему.\n3. "
+        "Группируйтесь: В середине и конце игры старайтесь держаться вместе, чтобы избежать разрозненных атак.")
 
-@bot.message_handler(func=lambda message: message.text == "Советы")
-def handle_sovet(message):
-    markup99 = types.InlineKeyboardMarkup(row_width=2)
-    button1 = types.InlineKeyboardButton("Основы игры", callback_data='hero_osn')
-    button2 = types.InlineKeyboardButton("Советы для разных ролей", callback_data='hero_roli')
-    button3 = types.InlineKeyboardButton("Советы по стратегии", callback_data='hero_strateg')
-    button4 = types.InlineKeyboardButton("Советы для новичков", callback_data='hero_novich')
-    button5 = types.InlineKeyboardButton("Советы по контрпикам", callback_data='hero_contrpik')
-    markup99.add(button1, button2, button3, button4, button5)
-    bot.send_message(message.chat.id, "Выберите категорию:", reply_markup=markup99)
+    elif call.data == "hero_roli":
+        markupv = types.InlineKeyboardMarkup(row_width=2)
+        button1 = types.InlineKeyboardButton(text="Танк", callback_data='as')
+        button2 = types.InlineKeyboardButton(text="Боец", callback_data='asd')
+        button3 = types.InlineKeyboardButton(text="Маг", callback_data='asdf')
+        button4 = types.InlineKeyboardButton(text="Стрелок", callback_data='asdfg')
+        button5 = types.InlineKeyboardButton(text="Убийца", callback_data='asdfgh')
+        button_back2 = types.InlineKeyboardButton(text="Назад", callback_data='back_to_sovet')
+        markupv.add(button1, button2, button3, button4, button5, button_back2)
+        bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
+                              text="Выберите категорию:", reply_markup=markupv)
+    elif call.data == "as":
+        bot.answer_callback_query(call.id, "Вы выбрали первый пункт.")
+        bot.send_message(call.message.chat.id,
+        "Всегда находитесь впереди команды, чтобы принимать урон на себя. Используйте свои способности контроля (станы, замедления) для инициации боёв или спасения союзников. Следите за картой и помогайте союзникам, если их атакуют. Не бойтесь жертвовать собой ради спасения ключевых героев (например, стрелков или магов).")
+    elif call.data == "asd":
+        bot.answer_callback_query(call.id, "Вы выбрали второй пункт.")
+        bot.send_message(call.message.chat.id,
+        "Фокусируйтесь на фарме в начале игры, чтобы быстрее получить экипировку. Используйте свои способности для быстрого убийства вражеских героев. В боях старайтесь атаковать вражеских стрелков и магов, так как они наносят больше всего урона. Не забывайте помогать команде в захвате целей (лорд, черепаха).")
+    elif call.data == "asdf":
+        bot.answer_callback_query(call.id, "Вы выбрали третий пункт.")
+        bot.send_message(call.message.chat.id,  
+        "Держитесь на задней линии, чтобы избежать смерти. Используйте свои способности контроля (станы, замедления) для помощи команде. Фокусируйтесь на вражеских стрелках и магах, чтобы быстро их убить. Не забывайте фармить, чтобы быстрее получить ключевые предметы.")
+    elif call.data == "asdfg":
+        bot.answer_callback_query(call.id, "Вы выбрали четвертый пункт.")
+        bot.send_message(call.message.chat.id,
+        "В начале игры сосредоточьтесь на фарме, чтобы быстрее получить экипировку. Держитесь на задней линии в боях, чтобы избежать смерти. Используйте свои способности для нанесения урона и контроля врагов. В поздней игре вы становитесь ключевым героем команды, поэтому старайтесь не умирать.")
+    elif call.data == "asdfgh":
+        bot.answer_callback_query(call.id, "Вы выбрали четвертый пункт.")
+        bot.send_message(call.message.chat.id,
+        "Используйте свою мобильность для неожиданных атак. Фокусируйтесь на вражеских героях с низким уровнем здоровья. В боях старайтесь зайти с фланга или сзади, чтобы убить вражеских стрелков или магов. Не забывайте фармить, чтобы быстрее получить экипировку.")
 
+    elif call.data == "hero_strateg":
+        markupv = types.InlineKeyboardMarkup(row_width=2)
+        button1 = types.InlineKeyboardButton(text="Раняя игра", callback_data='nb')
+        button2 = types.InlineKeyboardButton(text="Средняя игра", callback_data='nbv')
+        button3 = types.InlineKeyboardButton(text="Поздняя игра", callback_data='nbvc')
+        button4 = types.InlineKeyboardButton(text="Тактика для командных боев", callback_data='nbvcx')
+        button_back2 = types.InlineKeyboardButton(text="Назад", callback_data='back_to_sovet')
+        markupv.add(button1, button2, button3, button4, button_back2)
+        bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
+                              text="Выберите категорию:", reply_markup=markupv)
+    elif call.data == "nb":
+        bot.answer_callback_query(call.id, "Вы выбрали первый пункт.")
+        bot.send_message(call.message.chat.id,
+        "\n1. Фарм: Сосредоточьтесь на убийстве миньонов и нейтральных монстров, чтобы получить золото и опыт.\n2. ""Защита линии: Не рискуйте без необходимости. Держитесь ближе к своей башне, чтобы избежать ганков.\n3. "
+        "Черепаха: На второй минуте появляется Черепаха. Постарайтесь захватить её, чтобы дать команде дополнительное золото.")
+    elif call.data == "nbv":
+        bot.answer_callback_query(call.id, "Вы выбрали второй пункт.")
+        bot.send_message(call.message.chat.id,
+        "\n1. Командные бои: Начинайте группироваться для командных боёв. Старайтесь не действовать в одиночку.\n2. ""Фокус на вражеских стрелках и магах: В первую очередь атакуйте вражеских героев, которые наносят больше всего урона.\n3. "
+        "Лорд: После 8-й минуты появляется Лорд. Захватите его, чтобы усилить давление на вражескую базу.")
+    elif call.data == "nbvc":
+        bot.answer_callback_query(call.id, "Вы выбрали третий пункт.")
+        bot.send_message(call.message.chat.id,  
+        "\n1. База: Уничтожайте вражеские башни и казармы, чтобы ослабить вражеских миньонов.\n2. ""Лес: Между линиями находится лес, где можно убивать нейтральных монстров для получения золота и опыта.\n3. "
+        "Лорд и Черепаха: Продолжайте захватывать ключевые цели, чтобы усилить давление на врага.")
+    elif call.data == "nbvcx":
+        bot.answer_callback_query(call.id, "Вы выбрали четвертый пункт.")
+        bot.send_message(call.message.chat.id,
+        "\n1. Защита ключевых героев: Защищайте своих стрелков и магов, так как они наносят основной урон. \n2. ""Инициация: Если вы играете за танка или бойца, инициируйте бой, используя свои способности контроля.\n3. "
+        "Отступление: Если бой проигран, отступайте, чтобы не дать врагу дополнительное золото и опыт.")
+
+    elif call.data == "hero_novich":
+        markupv = types.InlineKeyboardMarkup(row_width=2)
+        button1 = types.InlineKeyboardButton(text="Танки", callback_data='gf')
+        button2 = types.InlineKeyboardButton(text="Бойцы", callback_data='gfd')
+        button3 = types.InlineKeyboardButton(text="Маги", callback_data='gfds')
+        button4 = types.InlineKeyboardButton(text="Стрелки", callback_data='gfdsa')
+        button5 = types.InlineKeyboardButton(text="Убийцы", callback_data='gfdsaq')
+        button_back2 = types.InlineKeyboardButton(text="Назад", callback_data='back_to_sovet')
+        markupv.add(button1, button2, button3, button4, button_back2)
+        bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
+                              text="Выберите категорию:", reply_markup=markupv)
+    elif call.data == "gf":
+        bot.answer_callback_query(call.id, "Вы выбрали первый пункт.")
+        bot.send_message(call.message.chat.id,
+        "Танки слабые против: Героев с пронзанием брони (например Керии, Клауд) и магов с высоким уроном (например Эйдора, Аврора).\n"
+        "Контрпики: Акай: Его ульт может отталкивать врагов, что полезно против героев, которые полагаются на позиционирование (например Лейла, Мия). Грок: Его способности наносят урон и контролируют врагов, что полезно против магов и стрелков.")
+    elif call.data == "gfd":
+        bot.answer_callback_query(call.id, "Вы выбрали второй пункт.")
+        bot.send_message(call.message.chat.id,
+        "Бойцы слабые против: Героев с контролем (например Аврора, Тигрил) и героев с высоким уроном (например Госсен, Ланселот).\n"
+        "Контрпики: Чу: Его способности позволяют ему уклоняться от атак и контролировать врагов, что полезно против бойцов и ассасинов. Чонг: Его ульт позволяет ему врываться в бой и наносить урон по области, что полезно против групп врагов.")
+    elif call.data == "gfds":
+        bot.answer_callback_query(call.id, "Вы выбрали третий пункт.")
+        bot.send_message(call.message.chat.id,  
+        "Маги слабые против: Героев с высокой мобильностью (например Госсен, Ланселот) и героев с защитой от магического урона (например Атлас, Грок).\n"
+        "Контрпики: Эйдора: Её способности позволяют быстро убивать вражеских героев, что полезно против магов и стрелков. Кагура: Её мобильность и контроль позволяют ей эффективно противостоять другим магам.")
+    elif call.data == "gfdsa":
+        bot.answer_callback_query(call.id, "Вы выбрали четвертый пункт.")
+        bot.send_message(call.message.chat.id,
+        "Стрелки слабые против: Героев (например Инь, Хаябуса) и героев с контролем (например Кармила, Тигрил).\n"
+        "Контрпики: Клауд: Его мобильность и урон позволяют ему эффективно противостоять другим стрелкам. Ван-Ван: Её способности позволяют ей уклоняться от атак и быстро убивать врагов.")
+    elif call.data == "gfdsaq":
+        bot.answer_callback_query(call.id, "Вы выбрали четвертый пункт.")
+        bot.send_message(call.message.chat.id,
+        "Убийцы слабые против: Танков (например Франко, Джонсон) и героев с контролем (например Вексана, Силена).\n"
+        "Контрпики: Сабер: Его способности позволяют ему быстро убивать вражеских героев, что полезно против убийц и магов. Хаябуса: Его мобильность и урон позволяют ему эффективно противостоять другим убийцам.")
+    elif call.data == "back_to_sovet":
+        bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
+                             text="Возвращаемся в главное меню.", reply_markup=None)
+        
 @bot.message_handler(func=lambda message: message.text == "Новости")
 def send_statistics(message):
     bot.reply_to(message, "Вы можете узнать статистику на сайте: [Mobile Legends Stats](https://www.mobilelegends.com/stats)", parse_mode="Markdown")
