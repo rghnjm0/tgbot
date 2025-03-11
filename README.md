@@ -21,8 +21,7 @@ Mobile Legends: Bang Bang — это динамичная MOBA-игра, где 
 - **VS Code**: Убедитесь что у вас также установлен VS Code.
 # Установка и настройка
 - Используйте язык программирования (например, Python) для настройки бота.
-- Установите библиотеку python-telegram-bot:
-- pip install python-telegram-bot
+- Установите библиотеку python-telegram-bot:**pip install python-telegram-bot**
 - Замените "ВАШ_ТОКЕН" на токен, полученный от BotFather.
 - Запустите бота
 # Контакты для обратной связи
