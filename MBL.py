@@ -1,8 +1,6 @@
 import telebot
 from telebot import types
-
-bot = telebot.TeleBot('Token')
-
+bot = telebot.TeleBot('7888824558:AAEgA4rSbMuuAoX3LJO1I8f-WqNN9cs8EFc')
 def main_menu():
     markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
     button1 = types.KeyboardButton('Герои')
@@ -11,7 +9,6 @@ def main_menu():
     button4 = types.KeyboardButton('Новости')
     markup.add(button1, button2, button3, button4)
     return markup
-
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
      with open("piki/mlbb1.jpg", "rb") as photo:
@@ -23,7 +20,6 @@ def send_welcome(message):
         "Игроки выбирают из разнообразных героев с уникальными способностями, каждый из которых занимает определённую роль на поле боя. "
         "Выберите опцию ниже.")
         bot.send_message(message.chat.id, welcome_text, reply_markup=main_menu())
-
 @bot.message_handler(func=lambda message: message.text == "Герои")
 def handle_heroes(message):
     otvet = types.InlineKeyboardMarkup(row_width=2)
@@ -35,7 +31,6 @@ def handle_heroes(message):
     button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_main')
     otvet.add(button1, button2, button3, button4, button5, button_back)
     bot.send_message(message.chat.id, "Выберите категорию:", reply_markup=otvet)
-
 @bot.message_handler(func=lambda message: message.text == "Советы")
 def handle_sovet(message):
     markup99 = types.InlineKeyboardMarkup(row_width=2)
@@ -45,7 +40,6 @@ def handle_sovet(message):
     button4 = types.InlineKeyboardButton("Советы по контрпикам", callback_data='hero_novich')
     markup99.add(button1, button2, button3, button4)
     bot.send_message(message.chat.id, "Выберите категорию:", reply_markup=markup99)
-
 @bot.message_handler(func=lambda message: message.text == "Снаряжение")
 def handle_equipment(message):
     otvedd = types.InlineKeyboardMarkup(row_width=2)
@@ -56,7 +50,6 @@ def handle_equipment(message):
     button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_main')
     otvedd.add(button1, button2, button3, button4, button_back)
     bot.send_message(message.chat.id, "Вот несколько снаряжений", reply_markup=otvedd)
-
 @bot.callback_query_handler(func=lambda call: True)
 def callback_query_photos(call):
     if call.data == "attacka":
@@ -113,7 +106,6 @@ def callback_query_photos(call):
         button_back6 = types.InlineKeyboardButton("Назад", callback_data='back_to_equipment')
         markup06.add(button1, button2, button3, button4, button_back6)
         bot.send_message(call.message.chat.id, "Выберите снаряжение:", reply_markup=markup06)
-
     elif call.data == "magic":
         markupm = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Пылающий жезл", callback_data='bu')
@@ -295,7 +287,9 @@ def callback_query_photos(call):
         media = [types.InputMediaPhoto(open('piki/Xay1.jpg', 'rb'), caption="Фото 1"),
                  types.InputMediaPhoto(open('piki/Xay2.jpg', 'rb'), caption="Фото 2"),
                  types.InputMediaPhoto(open('piki/Xay3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, "Хаябуса — один из самых популярных убийц в Mobile Legends, известный своей мобильностью и высоким уроном. Он идеально подходит для быстрых атак и уничтожения вражеских героев.\nСборка: Сапоги воина (Защита и снижение урона).\nУдар охотника (Фарм и урон по крипам).\nКлинок семи морей (Урон и скрытность).\nЗлобный рык (Пробивание брони против танков).\nКлинок отчаяния (Максимальный урон по слабым целям).\nЗолотой метеор (Дополнительный урон и замедление врагов).")
         bot.send_media_group(call.message.chat.id, media)
+
         markup6 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Хаябуса", callback_data='hero_hayabusa')
         button2 = types.InlineKeyboardButton("Джой", callback_data='hero_joi')
@@ -309,7 +303,9 @@ def callback_query_photos(call):
         media = [types.InputMediaPhoto(open('piki/djo1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/djo2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/djo3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, "Джой представляет собой универсального персонажа с высокой мобильностью и способностью к быстрой атаке. Джой специально создана для того, чтобы быстро перемещаться по полю боя и наносить вред противникам.\nСборка: Магические ботинки (Скорость передвижения и снижение перезарядки умений).\nПалочка гения (Увеличение магического урона и проникновения магии).\n Концентрированная энергия (Восстановление маны и усиление урона).\nСвященный кристалл (Максимальный магический урон).\nГосподство льда (Замедление врагов и контроль).\nКровавые крылья (Защита и щит при низком здоровье).")
         bot.send_media_group(call.message.chat.id, media)
+        
         markup7 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Хаябуса", callback_data='hero_hayabusa')
         button2 = types.InlineKeyboardButton("Джой", callback_data='hero_joi')
@@ -323,6 +319,7 @@ def callback_query_photos(call):
         media = [types.InputMediaPhoto(open('piki/Sye1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/Sye2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/Sye3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Суе — магический убийца, который наносит огромный урон из невидимости. Его стиль игры основан на неожиданных атаках и быстром уничтожении хрупких целей. \nСборка: Прочные сапоги (Защита от контроля и снижение урона).\nУдар охотника (Фарм и урон по крипам).\n Топор войны (Увеличение урона и замедление врагов).\n Клинок отчаяния (Максимальный урон, особенно против слабых целей).\nКрылья королевы (Защита и щит при низком здоровье).\nЗлобный рык (Пробивание брони против танков).")
         bot.send_media_group(call.message.chat.id, media)
         markup8 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Хаябуса", callback_data='hero_hayabusa')
@@ -337,6 +334,7 @@ def callback_query_photos(call):
         media = [types.InputMediaPhoto(open('piki/fan1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/fan2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/fan3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Фанни — уникальный убийца, который использует тросы для быстрого перемещения по карте и нанесения урона.\nСборка: Клинок семи морей (Увеличение урона и скрытность).\nПрочные сапоги (Защита от контроля и снижение урона).\nЗлобный рык (Пробивание брони против танков).\nУдар охотника (Фарм и урон по крипам).\nБесконечная битва (Урон, восстановление здоровья и дополнительные эффекты).\nДеревянная кираса (Защита от физического урона).")
         bot.send_media_group(call.message.chat.id, media)
         markup9 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Хаябуса", callback_data='hero_hayabusa')
@@ -351,6 +349,7 @@ def callback_query_photos(call):
         media = [types.InputMediaPhoto(open('piki/lans1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/lans2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/lans3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Ланселот — мобильный убийца, который использует мечи и умения для быстрых атак и уклонений. Его стиль игры требует точности и скорости, чтобы доминировать в бою.\nСборка: Сапоги спешки (Скорость передвижения и атаки).\nТопор войны (Увеличение урона и замедление врагов).\nЗлобный рык (Пробивание брони против танков).\nБесконечная битва (Урон, восстановление здоровья и дополнительные эффекты).\nКлинок отчаяния (Максимальный урон, особенно против слабых целей).\nБессмертие (Шанс на возрождение после смерти).")
         bot.send_media_group(call.message.chat.id, media)
         markup10 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Хаябуса", callback_data='hero_hayabusa')
@@ -383,8 +382,6 @@ def callback_query_photos(call):
             message_id=call.message.message_id,
             text="Возвращаемся в главное меню.",
             reply_markup=None)
-
-
     elif call.data == "hero_marksman":
         markup11 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Грейнджер", callback_data='hero_greyndger')
@@ -402,6 +399,7 @@ def callback_query_photos(call):
         media = [types.InputMediaPhoto(open('piki/gren1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/gren2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/gren3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Грейнджер — стрелок с уникальным стилем игры, использующий пистолеты и умения для нанесения огромного урона. Его ультимативная способность позволяет ему быстро перемещаться и доминировать в бою. \nСборка: Прочные сапоги (Защита от контроля и снижение урона).\nУдар охотника (Фарм и урон по крипам).\nКираса грубой силы (Защита от физического урона и усиление атаки).\nБесконечная битва (Урон, восстановление здоровья и дополнительные эффекты).\nКлинок отчаяния (Максимальный урон, особенно против слабых целей).\nЗлобный рык (Пробивание брони против танков).")
         bot.send_media_group(call.message.chat.id, media)
         markup12 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Грейнджер", callback_data='hero_greyndger')
@@ -417,6 +415,7 @@ def callback_query_photos(call):
         media = [types.InputMediaPhoto(open('piki/beat1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/beat2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/beat3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Беатрис — мощный стрелок с уникальным стилем игры, использующий два режима атаки: ближний и дальний бой. Она может адаптироваться к разным ситуациям, что делает её универсальным героем. \nСборка: Сапоги спешки (Скорость передвижения и атаки).\nКлинок семи морей (Увеличение урона и скрытность).\nКлинок отчаяния (Максимальный урон, особенно против слабых целей).\nУдар охотника (Фарм и урон по крипам).\nЗлобный рык (Пробивание брони против танков).\nКогти хаоса (Дополнительный урон и замедление врагов).")
         bot.send_media_group(call.message.chat.id, media)
         markup13 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Грейнджер", callback_data='hero_greyndger')
@@ -427,11 +426,11 @@ def callback_query_photos(call):
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup13.add(button1, button2, button3, button4, button5, button_back)
         bot.send_message(call.message.chat.id, "Выберите стрелка:", reply_markup=markup13)
-
     elif call.data == "hero_van-van":
         media = [types.InputMediaPhoto(open('piki/van1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/van2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/van3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Ван Ван – один из персонажей представляющий собой ловкого стрелка с уникальными способностями. Она обладает высокой мобильностью и может наносить значительный урон врагам благодаря своей умению метать стрелы. \nСборка: Коса коррозии (Снижение магической защиты врагов).\nМеч охотника на демонов (Магический урон и проникновение магии).\nГоворящий с ветром (Увеличение магического урона и скорости передвижения).\nВетер природы (Снижение перезарядки умений и магический урон).\nЗлобный рык (Пробивание брони против танков).\nКопье великого дракона (Максимальный магический урон и контроль).")
         bot.send_media_group(call.message.chat.id, media)
         markup14 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Грейнджер", callback_data='hero_greyndger')
@@ -442,11 +441,11 @@ def callback_query_photos(call):
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup14.add(button1, button2, button3, button4, button5, button_back)
         bot.send_message(call.message.chat.id, "Выберите стрелка:", reply_markup=markup14)
-
     elif call.data == "hero_bruno":
         media = [types.InputMediaPhoto(open('piki/bru1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/bru2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/bru3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Бруно — мощный стрелок, известный своим высоким уроном и способностью быстро уничтожать врагов. Его ультимативная способность позволяет ему наносить огромный урон на дистанции. \nСборка: Сапоги спешки (Скорость передвижения и атаки).\nЯрость берсерка (Крит-урон и скорость атаки).\nГоворящий с ветром (Увеличение магического урона и скорости передвижения).\nКогти хаоса (Дополнительный урон и замедление врагов).\nВетер природы (Снижение перезарядки умений и магический урон).\nБесконечная битва (Урон, восстановление здоровья и дополнительные эффекты).")
         bot.send_media_group(call.message.chat.id, media)
         markup15 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Грейнджер", callback_data='hero_greyndger')
@@ -457,11 +456,11 @@ def callback_query_photos(call):
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup15.add(button1, button2, button3, button4, button5, button_back)
         bot.send_message(call.message.chat.id, "Выберите стрелка:", reply_markup=markup15)
-
     elif call.data == "hero_notan":
         media = [types.InputMediaPhoto(open('piki/nott1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/nott2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/nott3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Натан — обладает уникальными способностями, которые позволяют ему наносить качественный урон и контролировать поле боя. \nСборка: Сапоги спешки (Скорость передвижения и атаки).\nРайское перо (Увеличение магического урона и скорости передвижения).\nЗолотой посох (Восстановление маны и усиление урона).\nМеч охотника на демонов (Магический урон и проникновение магии).\nПылающий жезл (Дополнительный урон и замедление врагов).\nЩит Афины (Защита и щит для союзников).")
         bot.send_media_group(call.message.chat.id, media)
         markup16 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Грейнджер", callback_data='hero_greyndger')
@@ -472,7 +471,6 @@ def callback_query_photos(call):
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup16.add(button1, button2, button3, button4, button5, button_back)
         bot.send_message(call.message.chat.id, "Выберите стрелка:", reply_markup=markup16)
-
     elif call.data == "back_to_heroes":
         markup = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Убийцы", callback_data='hero_assassin')
@@ -512,6 +510,7 @@ def callback_query_photos(call):
         media = [types.InputMediaPhoto(open('piki/dchys1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/dchys2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/dchys3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Джусинь — обладает уникальными способностями, позволяющими наносить урон на дальнем расстоянии и контролировать действия противников. \nСборка: Ботинки демона (Снижение перезарядки умений и магический урон).\nЧасы судьбы (Увеличение магического урона и проникновение магии).\nЖезл снежной королевы (Замедление врагов и контроль).\nПылающий жезл (Дополнительный урон и замедление врагов).\nФонарь желаний (Защита и щит для союзников).\nСвященный кристалл (Максимальный магический урон).")
         bot.send_media_group(call.message.chat.id, media)
         markup18 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Джусинь", callback_data='hero_dchysin')
@@ -522,11 +521,11 @@ def callback_query_photos(call):
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup18.add(button1, button2, button3, button4, button5, button_back)
         bot.send_message(call.message.chat.id, "Выберите мага:", reply_markup=markup18)
-
     elif call.data == "hero_xarit":
         media = [types.InputMediaPhoto(open('piki/xarit1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/xarit2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/xarit3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Харит уникален тем, что может наносить значительный урон врагам, одновременно обеспечивая себе защиту и возможность избегать атак противника. \nСборка: Магические ботинки (Снижение перезарядки умений и магический урон).\nСтарлиумовая коса (Увеличение магического урона и проникновение магии).\nРайское перо (Увеличение магического урона и скорости передвижения).\nСвященный кристалл (Максимальный магический урон).\nКровавые крылья (Защита и щит при низком здоровье).\nБожественный меч (Дополнительный урон и замедление врагов).")
         bot.send_media_group(call.message.chat.id, media)
         markup19 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Джусинь", callback_data='hero_dchysin')
@@ -537,11 +536,11 @@ def callback_query_photos(call):
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup19.add(button1, button2, button3, button4, button5, button_back)
         bot.send_message(call.message.chat.id, "Выберите мага:", reply_markup=markup19)
-
     elif call.data == "hero_ksava":
         media = [types.InputMediaPhoto(open('piki/ksava1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/ksava2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/ksava3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Ксавьер — магический герой, который использует свои способности для контроля и нанесения урона на расстоянии. Его стиль игры основан на точности и стратегическом использовании умений. \nСборка: Магические ботинки (Снижение перезарядки умений и магический урон).\nЧасы судьбы (Увеличение магического урона и проникновение магии).\nЗачарованный талисман (Восстановление маны и усиление урона).\nЖезл молний (Дополнительный урон и замедление врагов).\nБожественный меч (Дополнительный урон и замедление врагов).\nСвященный кристалл (Максимальный магический урон).")
         bot.send_media_group(call.message.chat.id, media)
         markup20 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Джусинь", callback_data='hero_dchysin')
@@ -552,11 +551,11 @@ def callback_query_photos(call):
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup20.add(button1, button2, button3, button4, button5, button_back)
         bot.send_message(call.message.chat.id, "Выберите мага:", reply_markup=markup20)
-
     elif call.data == "hero_iv":
         media = [types.InputMediaPhoto(open('piki/iv1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/iv2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/iv3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Ив — магический герой, который использует свои способности для контроля и нанесения урона на расстоянии. Её стиль игры основан на точности и стратегическом использовании умений. \nСборка: Магические ботинки (Снижение перезарядки умений и магический урон).\nЗачарованный талисман (Восстановление маны и усиление урона).\nЖезл снежной королевы (Замедление врагов и контроль).\nПылающий жезл (Дополнительный урон и замедление врагов).\nБожественный меч (Дополнительный урон и замедление врагов).\nСвященный кристалл (Максимальный магический урон).")
         bot.send_media_group(call.message.chat.id, media)
         markup21 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Джусинь", callback_data='hero_dchysin')
@@ -567,11 +566,11 @@ def callback_query_photos(call):
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup21.add(button1, button2, button3, button4, button5, button_back)
         bot.send_message(call.message.chat.id, "Выберите мага:", reply_markup=markup21)
-
     elif call.data == "hero_sesilion":
         media = [types.InputMediaPhoto(open('piki/sesi1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/sesi2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/sesi3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Сесилион — один из героев игры Mobile Legends: Bang Bang, относящийся к классу магов. Его основное оружие — энергетические шары, которые наносят урон врагам и восстанавливают здоровье Сесилиону. \nСборка: Ботинки демона (Снижение перезарядки умений и магический урон).\nЧасы судьбы (Увеличение магического урона и проникновение магии).\nЗачарованный талисман (Восстановление маны и усиление урона).\nЖезл молний (Дополнительный урон и замедление врагов).\nЖезл снежной королевы (Замедление врагов и контроль).\nБожественный меч (Дополнительный урон и замедление врагов).")
         bot.send_media_group(call.message.chat.id, media)
         markup22 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Джусинь", callback_data='hero_dchysin')
@@ -582,7 +581,6 @@ def callback_query_photos(call):
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup22.add(button1, button2, button3, button4, button5, button_back)
         bot.send_message(call.message.chat.id, "Выберите мага:", reply_markup=markup22)
-
     elif call.data == "back_to_heroes":
         markup = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Убийцы", callback_data='hero_assassin')
@@ -622,6 +620,7 @@ def callback_query_photos(call):
         media = [types.InputMediaPhoto(open('piki/gat1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/gat2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/gat3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Гатоткача — представляет собой танка с высокой выносливостью и способностями, которые позволяют не только защищать команду, но и атаковать врагов \nСборка: Сапоги заклинателя (Снижение перезарядки умений и магический урон).\nЧасы судьбы (Увеличение магического урона и проникновение магии).\nСвященный кристалл (Максимальный магический урон).\nБожественный меч (Дополнительный урон и замедление врагов).\nПалочка гения (Увеличение магического урона и проникновение магии).")
         bot.send_media_group(call.message.chat.id, media)
         markup24 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Гатоткача", callback_data='hero_gatot')
@@ -636,6 +635,7 @@ def callback_query_photos(call):
         media = [types.InputMediaPhoto(open('piki/chip1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/chip2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/chip3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Чип — может быстро передвигаться по карте и без труда вмешиваться в сражения, благодаря своим навыкам, позволяющим ему сближаться с врагами и контролировать их движения. \nСборка: Прочные сапоги (Защита от контроля и снижение урона).\nШтормовой пояс (Дополнительная защита и контроль врагов).\nГосподство льда (Замедление врагов и контроль).\nЩит Афины (Защита и щит для союзников).\nДревняя кираса (Снижение урона от вражеских атак).\nБессмертие (Шанс на возрождение после смерти).")
         bot.send_media_group(call.message.chat.id, media)
         markup25 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Гатоткача", callback_data='hero_gatot')
@@ -646,11 +646,11 @@ def callback_query_photos(call):
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup25.add(button1, button2, button3, button4, button5, button_back)
         bot.send_message(call.message.chat.id, "Выберите танка:", reply_markup=markup25)
-
     elif call.data == "hero_xilos":
         media = [types.InputMediaPhoto(open('piki/xilo1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/xilo2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/xilo3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Хилос — один из героев в игре Mobile Legends: Bang Bang, представляющий собой мощного танка с уникальными способностями. Он обладает высокой выживаемостью благодаря своей способности восстанавливать здоровье и блокировать урон. \nСборка: Сапоги воина (Защита и снижение физического урона).\nГосподство льда (Замедление врагов и контроль).\nЖезл снежной королевы (Дополнительный контроль и замедление врагов).\nДревняя кираса (Снижение урона от вражеских атак).\nСияющая броня (Защита от критического урона).\nЗащитный шлем (Снижение урона от вражеских героев).")
         bot.send_media_group(call.message.chat.id, media)
         markup26 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Гатоткача", callback_data='hero_gatot')
@@ -661,11 +661,11 @@ def callback_query_photos(call):
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup26.add(button1, button2, button3, button4, button5, button_back)
         bot.send_message(call.message.chat.id, "Выберите танка:", reply_markup=markup26)
-
     elif call.data == "hero_xilda":
         media = [types.InputMediaPhoto(open('piki/xilda1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/xilda2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/xilda3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Хильда — один из героев в мобильной игре Mobile Legends: Bang Bang. Она выступает в роли бойца и отлично подходит для выполнения задач на линии и в командных сражениях. \nСборка: Сапоги воина (Защита и снижение физического урона).\nГосподство льда (Замедление врагов и контроль).\nДревняя кираса (Снижение урона от вражеских атак).\nБессмертие (Шанс на возрождение после смерти).\nЩит Афины (Защита и щит для союзников).\nЗащитный шлем (Снижение урона от вражеских героев).")
         bot.send_media_group(call.message.chat.id, media)
         markup27 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Гатоткача", callback_data='hero_gatot')
@@ -676,11 +676,11 @@ def callback_query_photos(call):
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup27.add(button1, button2, button3, button4, button5, button_back)
         bot.send_message(call.message.chat.id, "Выберите танка:", reply_markup=markup27)
-
     elif call.data == "hero_chy":
         media = [types.InputMediaPhoto(open('piki/chu1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/chu2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/chu3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Чу — один из героев игры Mobile Legends: Bang Bang, относящийся к роли бойца. ОН известен своим умением «Dragon and Tiger», которое позволяет ему захватывать врагов и оставлять их беззащитными перед его атакой. \nСборка: Прочные сапоги (Защита от контроля и снижение урона).\nГосподство льда (Замедление врагов и контроль).\nЩит Афины (Защита и щит для союзников).\nБессмертие (Шанс на возрождение после смерти).\nДревняя кираса (Снижение урона от вражеских атак).\nСияющая броня (Защита от критического урона).")
         bot.send_media_group(call.message.chat.id, media)
         markup28 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Гатоткача", callback_data='hero_gatot')
@@ -691,7 +691,6 @@ def callback_query_photos(call):
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup28.add(button1, button2, button3, button4, button5, button_back)
         bot.send_message(call.message.chat.id, "Выберите танка:", reply_markup=markup28)
-
     elif call.data == "back_to_heroes":
         markup = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Убийцы", callback_data='hero_assassin')
@@ -731,6 +730,7 @@ def callback_query_photos(call):
         media = [types.InputMediaPhoto(open('piki/badg1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/badg2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/badg3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Баданг — это один из героев в игре Mobile Legends: Bang Bang, который относится к классу бойцов. Баданг использует свою силу и мастерство в боевых искусствах, чтобы перемещаться по полю боя и эффективно сражаться с противниками. \nСборка: Сапоги воина (Защита и снижение физического урона).\nМеч охотников на демонов (Магический урон и проникновение магии).\nЗолотой посох (Восстановление маны и усиление урона).\nКоса коррозии (Снижение магической защиты врагов).\nЗлобный рык (Пробивание брони против танков).\nКлинок отчаяния (Максимальный урон, особенно против слабых целей).")
         bot.send_media_group(call.message.chat.id, media)
         markup = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Баданг", callback_data='hero_badang')
@@ -741,11 +741,11 @@ def callback_query_photos(call):
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup.add(button1, button2, button3, button4, button5, button_back)
         bot.send_message(call.message.chat.id, "Выберите бойца:", reply_markup=markup)
-
     elif call.data == "hero_lucas":
         media = [types.InputMediaPhoto(open('piki/chi1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/chi2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/chi3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Чичи — это один из героев в игре Mobile Legends: Bang Bang, представляющий собой поддержку и магического танка. Чичи может использовать свои способности для создания зон контроля, замедления противников и увеличения выживаемости союзников.  \nСборка: Магические ботинки (Снижение перезарядки умений и магический урон).\nТопор войны (Увеличение урона и замедление врагов).\nУдар охотника (Фарм и урон по крипам).\nКираса грубой силы (Защита от физического урона и усиление атаки).\nЗлобный рык (Пробивание брони против танков).\nЩит Афины (Защита и щит для союзников).")
         bot.send_media_group(call.message.chat.id, media)
         markup = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Баданг", callback_data='hero_badang')
@@ -760,6 +760,7 @@ def callback_query_photos(call):
         media = [types.InputMediaPhoto(open('piki/glu1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/glu2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/glu3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Глу — это один из героев в игре Mobile Legends: Bang Bang, представляющий собой защитника с сильными механиками контроля и поддержкой команды. Его специальная атака может замедлять противников и вызывать важные изменения в бою. \nСборка: Сапоги воина (Защита и снижение физического урона).\nПроклятый шлем (Защита от магического урона и отражение урона).\nОракул (Снижение перезарядки умений и магический урон).\nГосподство льда (Замедление врагов и контроль).\nШтормовой пояс (Дополнительная защита и контроль врагов).\nПылающий жезл (Дополнительный урон и замедление врагов).")
         bot.send_media_group(call.message.chat.id, media)
         markup = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Баданг", callback_data='hero_badang')
@@ -774,6 +775,7 @@ def callback_query_photos(call):
         media = [types.InputMediaPhoto(open('piki/san1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/san2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/san3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Сан — один из героев в игре Mobile Legends: Bang Bang. Он относится к классу бойцов и обладает уникальными способностями, которые делают его сильным в боях. Основные характеристики Сан включают высокую скорость передвижения и способность наносить значительный урон врагам в ближнем бою. \nСборка: Прочные сапоги (Защита от контроля и снижение урона).\nКоса коррозии (Снижение магической защиты врагов).\nМеч охотника на демонов (Магический урон и проникновение магии).\nГосподство льда (Замедление врагов и контроль).\nЗолотой посох (Восстановление маны и усиление урона).\nЩит Афины (Защита и щит для союзников).")
         bot.send_media_group(call.message.chat.id, media)
         markup = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Баданг", callback_data='hero_badang')
@@ -788,6 +790,7 @@ def callback_query_photos(call):
         media = [types.InputMediaPhoto(open('piki/halid1.jpg', 'rb'), caption="Фото 1"),
             types.InputMediaPhoto(open('piki/halid2.jpg', 'rb'), caption="Фото 2"),
             types.InputMediaPhoto(open('piki/halid3.jpg', 'rb'), caption="Фото 3")]
+        bot.send_message(call.message.chat.id, " Халид — герой в игре Mobile Legends: Bang Bang, представляющий собой бойца с сильными навыками в ближнем бою и высокой мобильностью. Он происходит из пустыни и обладает быстрым передвижением по полю боя, что позволяет ему легко маневрировать между врагами. \nСборка: Сапоги воина (Защита и снижение физического урона).\nКлинок семи морей (Увеличение урона и скрытность).\n\nГосподство льда (Замедление врагов и контроль).\nОракул (Снижение перезарядки умений и магический урон).\nБессмертие (Шанс на возрождение после смерти).")
         bot.send_media_group(call.message.chat.id, media)
         markup = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Баданг", callback_data='hero_badang')
@@ -798,7 +801,6 @@ def callback_query_photos(call):
         button_back = types.InlineKeyboardButton("Назад", callback_data='back_to_heroes')
         markup.add(button1, button2, button3, button4, button5, button_back)
         bot.send_message(call.message.chat.id, "Выберите бойца:", reply_markup=markup)
-
     elif call.data == "back_to_heroes":
         markup6 = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton("Убийцы", callback_data='hero_assassin')
@@ -843,7 +845,6 @@ def callback_query_photos(call):
         bot.send_message(call.message.chat.id,
         "\n1. Общайтесь: Используйте чат и быстрые сообщения, чтобы координировать действия с командой.\n2. ""Помогайте союзникам: Если видите, что союзник в беде, постарайтесь помочь ему.\n3. "
         "Группируйтесь: В середине и конце игры старайтесь держаться вместе, чтобы избежать разрозненных атак.")
-
     elif call.data == "hero_roli":
         markupv = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton(text="Танк", callback_data='as')
@@ -875,7 +876,6 @@ def callback_query_photos(call):
         bot.answer_callback_query(call.id, "Вы выбрали четвертый пункт.")
         bot.send_message(call.message.chat.id,
         "Используйте свою мобильность для неожиданных атак. Фокусируйтесь на вражеских героях с низким уровнем здоровья. В боях старайтесь зайти с фланга или сзади, чтобы убить вражеских стрелков или магов. Не забывайте фармить, чтобы быстрее получить экипировку.")
-
     elif call.data == "hero_strateg":
         markupv = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton(text="Раняя игра", callback_data='nb')
@@ -906,7 +906,6 @@ def callback_query_photos(call):
         bot.send_message(call.message.chat.id,
         "\n1. Защита ключевых героев: Защищайте своих стрелков и магов, так как они наносят основной урон. \n2. ""Инициация: Если вы играете за танка или бойца, инициируйте бой, используя свои способности контроля.\n3. "
         "Отступление: Если бой проигран, отступайте, чтобы не дать врагу дополнительное золото и опыт.")
-
     elif call.data == "hero_novich":
         markupv = types.InlineKeyboardMarkup(row_width=2)
         button1 = types.InlineKeyboardButton(text="Танки", callback_data='gf')
@@ -949,8 +948,7 @@ def callback_query_photos(call):
         
 @bot.message_handler(func=lambda message: message.text == "Новости")
 def send_statistics(message):
-    bot.reply_to(message, "Вы можете узнать статистику на сайте: [Mobile Legends Stats](https://www.mobilelegends.com/stats)", parse_mode="Markdown")
-
+    bot.reply_to(message, "Вы можете узнать новости на сайте: [Mobile Legends Stats](https://www.mobilelegends.com/stats)", parse_mode="Markdown")
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
     bot.reply_to(message, "Извините, я не понимаю. Выберите одну из кнопок.")
